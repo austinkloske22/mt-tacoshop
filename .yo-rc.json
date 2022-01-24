@@ -1,0 +1,14 @@
+{
+  "generator-saphanaacademy-saas": {
+    "projectName": "mt-tacoshop",
+    "newDir": false,
+    "displayName": "Multitenant Tacoshop",
+    "description": "Multitenant Tacoshop SaaS",
+    "category": "Demo",
+    "SaaSAPI": true,
+    "HANA": false,
+    "customDomain": "",
+    "routes": true,
+    "destination": true
+  }
+}

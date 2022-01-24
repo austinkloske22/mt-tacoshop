@@ -1,0 +1,79 @@
+ID: mt-tacoshop
+_schema-version: "3.1"
+version: 0.0.1
+
+modules:
+
+  - name: mt-tacoshop-srv
+    type: nodejs
+    path: srv
+    parameters:
+      memory: 256M
+      disk-quota: 512M
+    provides:
+      - name: srv_api
+        properties:
+          url: ${default-url}
+    requires:
+      - name: mt-tacoshop-uaa
+      - name: mt-tacoshop-registry
+      - name: mt-tacoshop-dest
+
+  - name: mt-tacoshop
+    type: html5
+    path: app
+    parameters:
+      memory: 256M
+      disk-quota: 512M
+    provides:
+      - name: app_api
+        properties:
+          url: ${default-url}
+          application: ${app-name}
+    properties:
+      TENANT_HOST_PATTERN: '^(.*)-${space}-${app-name}.${default-domain}'
+    requires:
+      - name: mt-tacoshop-uaa
+      - name: srv_api
+        group: destinations
+        properties:
+          name: srv
+          url: ~{url}
+          forwardAuthToken: true
+
+resources:
+  - name: mt-tacoshop-uaa
+    type: org.cloudfoundry.managed-service
+    requires: 
+      - name: app_api
+    properties:
+      XSAPPNAME: ${xsuaa-app}
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-plan: application
+      xsuaa-app: ${space}-~{app_api/application}
+      config:
+        xsappname: ${xsuaa-app}
+  - name: mt-tacoshop-registry
+    type: org.cloudfoundry.managed-service
+    requires:
+      - name: mt-tacoshop-uaa
+    parameters:
+      service: saas-registry
+      service-plan: application
+      service-name: mt-tacoshop-registry
+      config:
+        xsappname: ~{mt-tacoshop-uaa/XSAPPNAME}
+        appName: mt-tacoshop
+        displayName: 'Multitenant Tacoshop'
+        description: 'Multitenant Tacoshop SaaS'
+        category: 'Demo'
+        appUrls:
+          onSubscription: https://${org}-${space}-mt-tacoshop-srv.${default-domain}/callback/v1.0/tenants/{tenantId}
+          getDependencies: https://${org}-${space}-mt-tacoshop-srv.${default-domain}/callback/v1.0/dependencies
+  - name: mt-tacoshop-dest
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
