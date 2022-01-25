@@ -16,16 +16,18 @@ const services = xsenv.getServices({
 
 const xssec = require('@sap/xssec');
 const passport = require('passport');
-passport.use('JWT', new xssec.JWTStrategy(services.uaa));
-app.use(passport.initialize());
-app.use(passport.authenticate('JWT', {
-    session: false
-}));
 
 cds.on('bootstrap', (app) => {
 
     app.use(bodyParser.json());
     const lib = require('./library');
+
+    passport.use('JWT', new xssec.JWTStrategy(services.uaa));
+    app.use(passport.initialize());
+    app.use(passport.authenticate('JWT', {
+        session: false
+    }));
+
 
     // subscribe/onboard a subscriber tenant
     app.put('/callback/v1.0/tenants/*', function (req, res) {
@@ -114,7 +116,7 @@ cds.on('bootstrap', (app) => {
         }
     });
 
-    const port = process.env.PORT || 4004;
+    const port = process.env.PORT || 5001;
     app.listen(port, function () {
         console.info('Listening on http://localhost:' + port);
     });

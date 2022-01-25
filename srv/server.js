@@ -16,16 +16,18 @@ const services = xsenv.getServices({
 
 const xssec = require('@sap/xssec');
 const passport = require('passport');
-passport.use('JWT', new xssec.JWTStrategy(services.uaa));
-app.use(passport.initialize());
-app.use(passport.authenticate('JWT', {
-    session: false
-}));
 
 cds.on('bootstrap', (app) => {
 
     app.use(bodyParser.json());
     const lib = require('./library');
+
+    passport.use('JWT', new xssec.JWTStrategy(services.uaa));
+    app.use(passport.initialize());
+    app.use(passport.authenticate('JWT', {
+        session: false
+    }));
+
 
     // subscribe/onboard a subscriber tenant
     app.put('/callback/v1.0/tenants/*', function (req, res) {
