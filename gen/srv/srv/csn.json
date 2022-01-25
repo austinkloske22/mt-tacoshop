@@ -47,7 +47,7 @@
       }
     },
     "CatalogService": {
-      "@source": "srv/tenant-model.cds.cds",
+      "@source": "srv/tenant-model.cds",
       "kind": "service"
     },
     "CatalogService.Tacos": {
@@ -526,6 +526,15 @@
       "type": "cds.String",
       "length": 255
     },
+    "extensible": {
+      "kind": "aspect",
+      "elements": {
+        "extensions__": {
+          "@cds.api.ignore": true,
+          "type": "cds.String"
+        }
+      }
+    },
     "sap.common.Languages.texts": {
       "kind": "entity",
       "@odata.draft.enabled": false,
@@ -537,13 +546,13 @@
         },
         "name": {
           "@title": "{i18n>Name}",
-          "localized": false,
+          "localized": null,
           "type": "cds.String",
           "length": 255
         },
         "descr": {
           "@title": "{i18n>Description}",
-          "localized": false,
+          "localized": null,
           "type": "cds.String",
           "length": 1000
         },
@@ -570,13 +579,13 @@
         },
         "name": {
           "@title": "{i18n>Name}",
-          "localized": false,
+          "localized": null,
           "type": "cds.String",
           "length": 255
         },
         "descr": {
           "@title": "{i18n>Description}",
-          "localized": false,
+          "localized": null,
           "type": "cds.String",
           "length": 1000
         },
@@ -603,13 +612,13 @@
         },
         "name": {
           "@title": "{i18n>Name}",
-          "localized": false,
+          "localized": null,
           "type": "cds.String",
           "length": 255
         },
         "descr": {
           "@title": "{i18n>Description}",
-          "localized": false,
+          "localized": null,
           "type": "cds.String",
           "length": 1000
         },
@@ -627,7 +636,7 @@
     }
   },
   "meta": {
-    "creator": "CDS Compiler v2.7.0",
+    "creator": "CDS Compiler v2.11.4",
     "flavor": "inferred"
   },
   "$version": "2.0"
