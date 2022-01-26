@@ -10,6 +10,7 @@
     "@sap/xsenv": "^3.1.1",
     "@sap/xssec": "^3.2.12",
     "body-parser": "^1.19.1",
+    "cds-pg": "^0.1.21",
     "cfenv": "^1.2.4",
     "express": "^4",
     "passport": "^0.5.2"
@@ -18,8 +19,21 @@
     "sqlite3": "^5.0.2"
   },
   "scripts": {
-    "start": "cds run",
-    "start:sqlite": "cds deploy -2 sqlite::memory: --no-save && cds serve all --in-memory"
+    "start": "node srv/server.js",
+    "deploy:sqlite": "cds deploy -2 sqlite::db:"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "database": ":db:"
+        }
+      }
+    },
+    "features": {
+      "in_memory_db": true
+    }
   },
   "eslintConfig": {
     "extends": "eslint:recommended",

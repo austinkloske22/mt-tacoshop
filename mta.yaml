@@ -1,12 +1,13 @@
 ID: mt-tacoshop
 _schema-version: "3.1"
-version: 0.0.1
-
+version: 0.0.4
+parameters:
+  enable-parallel-deployments: true
+  keep-existing-routes: true
 modules:
-
   - name: mt-tacoshop-srv
     type: nodejs
-    path: Ò
+    path: gen/srv
     parameters:
       memory: 256M
       disk-quota: 512M

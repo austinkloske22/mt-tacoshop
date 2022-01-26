@@ -48,7 +48,8 @@
     },
     "CatalogService": {
       "@source": "srv/tenant-model.cds",
-      "kind": "service"
+      "kind": "service",
+      "@path": "/Tenant/Catalog"
     },
     "CatalogService.Tacos": {
       "kind": "entity",
