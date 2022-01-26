@@ -11,6 +11,12 @@
             "destination": "srv"
         },
         {
+            "source": "^/Tenant/(.*)$",
+            "authenticationType": "xsuaa",
+            "scope": "$XSAPPNAME.User",
+            "destination": "srv"
+        },
+        {
             "source": "^/(.*)",
             "authenticationType": "none",
             "localDir": "resources"

@@ -1,6 +1,6 @@
 ID: mt-tacoshop
 _schema-version: "3.1"
-version: 0.0.4
+version: 0.0.5
 parameters:
   enable-parallel-deployments: true
   keep-existing-routes: true
@@ -19,6 +19,7 @@ modules:
       - name: mt-tacoshop-uaa
       - name: mt-tacoshop-registry
       - name: mt-tacoshop-dest
+      - name: mt-tacoshop-db
 
   - name: mt-tacoshop
     type: html5
@@ -43,6 +44,8 @@ modules:
           forwardAuthToken: true
 
 resources:
+  - name: mt-tacoshop-db
+    type: org.cloudfoundry.existing-service
   - name: mt-tacoshop-uaa
     type: org.cloudfoundry.managed-service
     requires: 

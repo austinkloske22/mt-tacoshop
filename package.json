@@ -10,29 +10,52 @@
     "@sap/xsenv": "^3.1.1",
     "@sap/xssec": "^3.2.12",
     "body-parser": "^1.19.1",
-    "cds-pg": "^0.1.21",
+    "cds-pg": "^0.1.22",
     "cfenv": "^1.2.4",
     "express": "^4",
     "passport": "^0.5.2"
   },
   "devDependencies": {
+    "cds-dbm": "github:austinkloske22/cds-dbm#main",
     "sqlite3": "^5.0.2"
   },
   "scripts": {
     "start": "node srv/server.js",
-    "deploy:sqlite": "cds deploy -2 sqlite::db:"
+    "deploy:sqlite": "cds deploy -2 sqlite::db:",
+    "docker:start:pg": "docker-compose -f docker-compose.yml up -d",
+    "deploy:pg": "node_modules/cds-dbm/dist/cli.js deploy --create-db",
+    "deploy:pg:load": "node_modules/cds-dbm/dist/cli.js deploy --load-via delta"
   },
   "cds": {
     "requires": {
       "db": {
-        "kind": "sqlite",
-        "credentials": {
-          "database": ":db:"
-        }
+        "kind": "database"
+      },
+      "database": {
+        "dialect": "plain",
+        "impl": "cds-pg",
+        "model": [
+          "srv"
+        ]
       }
     },
-    "features": {
-      "in_memory_db": true
+    "migrations": {
+      "db": {
+        "multitenant": true,
+        "schema": {
+          "default": "public",
+          "clone": "_cdsdbm_clone",
+          "reference": "_cdsdbm_ref",
+          "tenants": [
+            "c21a0f01a094445a97616901eda6b86a",
+            "39b01c859d9742838c84ca8b0b7680bb"
+          ]
+        },
+        "deploy": {
+          "tmpFile": "tmp/_autodeploy.json",
+          "undeployFile": "db/undeploy.json"
+        }
+      }
     }
   },
   "eslintConfig": {
