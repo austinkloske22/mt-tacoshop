@@ -1,14 +1,7 @@
 {
     "xsappname": "mt-tacoshop",
-    "tenant-mode": "shared",
+    "tenant-mode": "dedicated",
     "scopes": [
-        {
-            "name": "$XSAPPNAME.Callback",
-            "description": "With this scope set, the callbacks for tenant onboarding, offboarding and getDependencies can be called.",
-            "grant-as-authority-to-apps": [
-                "$XSAPPNAME(application,sap-provisioning,tenant-onboarding)"
-            ]
-        },
         {
             "name": "$XSAPPNAME.Administrator",
             "description": "Administrate the application"
@@ -36,7 +29,7 @@
     ],
     "role-collections": [
         {
-            "name": "mt-tacoshop_Administrator",
+            "name": "mt-tacoshop_vscode_Administrator",
             "description": "Multitenant Tacoshop Administrator",
             "role-template-references": [
                 "$XSAPPNAME.Administrator",
@@ -44,7 +37,7 @@
             ]
         },
         {
-            "name": "mt-tacoshop_User",
+            "name": "mt-tacoshop_vscode_User",
             "description": "Multitenant Tacoshop User",
             "role-template-references": [
                 "$XSAPPNAME.User"

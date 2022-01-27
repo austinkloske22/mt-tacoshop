@@ -2,7 +2,8 @@ module.exports = {
     getSubscriptions: getSubscriptions,
     createRoute: createRoute,
     deleteRoute: deleteRoute,
-    getDestination: getDestination
+    getDestination: getDestination,
+    formatSchema: formatSchema
 };
 
 const cfenv = require('cfenv');
@@ -10,6 +11,14 @@ const appEnv = cfenv.getAppEnv();
 
 const axios = require('axios');
 const qs = require('qs');
+
+function formatSchema(tenantId) {
+    //postgreSQL does not allow first character "0" in schema name
+    var schema = "_" + tenantId;
+    //postgreSQL seems to error when passing '-' to schema name
+    schema = schema.replace(/-/g, '');
+    return schema;
+};
 
 async function getSubscriptions(registry) {
     try {

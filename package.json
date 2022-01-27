@@ -45,10 +45,12 @@
         "schema": {
           "default": "public",
           "clone": "_cdsdbm_clone",
+          "schema": "public",
           "reference": "_cdsdbm_ref",
           "tenants": [
-            "c21a0f01a094445a97616901eda6b86a",
-            "39b01c859d9742838c84ca8b0b7680bb"
+            "_c21a0f01a094445a97616901eda6b86a",
+            "_39b01c859d9742838c84ca8b0b7680bb",
+            "_699826aaa971415b8556c5ebb080232c"
           ]
         },
         "deploy": {

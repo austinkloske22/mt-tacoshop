@@ -1,25 +1,27 @@
-
-
 {
-    "welcomeFile": "index.html",
-    "authenticationMethod": "route",
-    "routes": [
-        {
-            "source": "^/srv/(.*)$",
-            "authenticationType": "xsuaa",
-            "scope": "$XSAPPNAME.User",
-            "destination": "srv"
-        },
-        {
-            "source": "^/Tenant/(.*)$",
-            "authenticationType": "xsuaa",
-            "scope": "$XSAPPNAME.User",
-            "destination": "srv"
-        },
-        {
-            "source": "^/(.*)",
-            "authenticationType": "none",
-            "localDir": "resources"
-        }
-    ]
+  "welcomeFile": "index.html",
+  "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/logout",
+    "logoutPage": "/logout.html"
+  },
+  "routes": [
+    {
+      "source": "^/srv/(.*)$",
+      "authenticationType": "xsuaa",
+      "scope": "$XSAPPNAME.User",
+      "destination": "srv"
+    },
+    {
+      "source": "^/Tenant/(.*)$",
+      "authenticationType": "xsuaa",
+      "scope": "$XSAPPNAME.User",
+      "destination": "srv"
+    },
+    {
+      "source": "^/(.*)",
+      "authenticationType": "none",
+      "localDir": "resources"
+    }
+  ]
 }
