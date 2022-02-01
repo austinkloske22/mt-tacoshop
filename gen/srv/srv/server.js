@@ -21,6 +21,7 @@ const passport = require('passport');
 app.use(bodyParser.json());
 const lib = require('./library');
 
+
 passport.use('JWT', new xssec.JWTStrategy(services.uaa));
 app.use(passport.initialize());
 app.use(passport.authenticate('JWT', {

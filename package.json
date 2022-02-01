@@ -6,17 +6,17 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^5",
+    "@sap/cds": "5.3.2",
     "@sap/xsenv": "^3.1.1",
     "@sap/xssec": "^3.2.12",
     "body-parser": "^1.19.1",
-    "cds-pg": "^0.1.22",
+    "cds-pg": "0.0.51",
     "cfenv": "^1.2.4",
     "express": "^4",
     "passport": "^0.5.2"
   },
   "devDependencies": {
-    "cds-dbm": "github:austinkloske22/cds-dbm#main",
+    "cds-dbm": "github:austinkloske22/cds-dbm#eac383b656d9ecd570bfbb50b7f7fa4f2167e80f",
     "sqlite3": "^5.0.2"
   },
   "scripts": {
@@ -45,8 +45,8 @@
         "schema": {
           "default": "public",
           "clone": "_cdsdbm_clone",
-          "schema": "public",
           "reference": "_cdsdbm_ref",
+          "schema": "public",
           "tenants": [
             "_c21a0f01a094445a97616901eda6b86a",
             "_39b01c859d9742838c84ca8b0b7680bb",

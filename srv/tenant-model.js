@@ -4,19 +4,19 @@ const lib = require('./library');
 console.log('before-exports');
 module.exports = cds.service.impl(function () {
 
-    this.before('READ', '*', async (data) => {
+    this.before('READ', '*', (data) => {
         data.req.user.schema = lib.formatSchema(data.req.authInfo.getZoneId());
     });
 
-    this.before('CREATE',  '*', async (data) => {
+    this.before('CREATE',  '*', (data) => {
         data.req.user.schema = lib.formatSchema(data.req.authInfo.getZoneId());
     });
    
-    this.before('DELETE', '*', async (data) => {
+    this.before('DELETE', '*', (data) => {
         data.req.user.schema = lib.formatSchema(data.req.authInfo.getZoneId());
     });
 
-    this.before('UPDATE', '*', async (data) => {
+    this.before('UPDATE', '*', (data) => {
         data.req.user.schema = lib.formatSchema(data.req.authInfo.getZoneId());
     });
 });

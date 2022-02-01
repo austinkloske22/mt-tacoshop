@@ -18,5 +18,12 @@
       "type": "node-terminal",
       "skipFiles": [ "<node_internals>/**" ]
     },
+    {
+      "command": "npm run deploy:pg",
+      "name": "deploy pg",
+      "request": "launch",
+      "type": "node-terminal",
+      "skipFiles": [ "<node_internals>/**" ]
+    }
   ]
 }

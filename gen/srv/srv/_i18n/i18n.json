@@ -232,10 +232,10 @@
     "Draft_DraftIsProcessedByMe": "Luonnos minun käsiteltävänäni"
   },
   "fr": {
-    "CreatedBy": "Auteur de la création",
-    "CreatedAt": "Date de création",
-    "ChangedBy": "Auteur de la modification",
-    "ChangedAt": "Date de modification",
+    "CreatedBy": "Créé(e) par",
+    "CreatedAt": "Créé(e) le",
+    "ChangedBy": "Modifié(e) par",
+    "ChangedAt": "Modifié(e) le",
     "Currency": "Devise",
     "CurrencyCode": "Code de devise",
     "CurrencyCode.Description": "Code de devise tel qu'indiqué par ISO 4217",

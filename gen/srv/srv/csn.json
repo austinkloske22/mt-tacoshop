@@ -1,12 +1,12 @@
 {
-  "namespace": "mt.tacoshop",
+  "namespace": "mt.tacoshop.crosstenant",
   "definitions": {
-    "mt.tacoshop.tCurrency": {
+    "mt.tacoshop.crosstenant.tCurrency": {
       "kind": "type",
       "type": "cds.String",
       "length": 3
     },
-    "mt.tacoshop.aValue": {
+    "mt.tacoshop.crosstenant.aValue": {
       "kind": "aspect",
       "elements": {
         "value": {
@@ -15,8 +15,65 @@
           "scale": 3
         },
         "currency": {
-          "type": "mt.tacoshop.tCurrency",
+          "type": "mt.tacoshop.crosstenant.tCurrency",
           "length": 3
+        }
+      }
+    },
+    "mt.tacoshop.crosstenant.Currency": {
+      "kind": "entity",
+      "elements": {
+        "code": {
+          "key": true,
+          "type": "cds.String",
+          "length": 70
+        },
+        "iso3": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "iso3Number": {
+          "type": "cds.Integer"
+        },
+        "localized": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "mt.tacoshop.crosstenant.CurrencyTexts",
+          "on": [
+            {
+              "ref": [
+                "localized",
+                "code"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "code"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "mt.tacoshop.crosstenant.CurrencyTexts": {
+      "kind": "entity",
+      "@cds.autoexpose": true,
+      "elements": {
+        "locale": {
+          "key": true,
+          "type": "cds.String",
+          "length": 5
+        },
+        "code": {
+          "key": true,
+          "type": "cds.String",
+          "length": 70
+        },
+        "title": {
+          "type": "cds.String"
         }
       }
     },
@@ -24,7 +81,7 @@
       "kind": "entity",
       "includes": [
         "cuid",
-        "mt.tacoshop.aValue"
+        "mt.tacoshop.crosstenant.aValue"
       ],
       "elements": {
         "ID": {
@@ -37,12 +94,62 @@
           "scale": 3
         },
         "currency": {
-          "type": "mt.tacoshop.tCurrency",
+          "type": "mt.tacoshop.crosstenant.tCurrency",
           "length": 3
         },
         "type": {
           "type": "cds.String",
           "length": 50
+        }
+      }
+    },
+    "CrosstenantService": {
+      "@source": "srv/crosstenant-model.cds",
+      "kind": "service",
+      "@path": "/Crosstenant/Catalog"
+    },
+    "CrosstenantService.Currencys": {
+      "kind": "entity",
+      "projection": {
+        "from": {
+          "ref": [
+            "mt.tacoshop.crosstenant.Currency"
+          ]
+        }
+      },
+      "elements": {
+        "code": {
+          "key": true,
+          "type": "cds.String",
+          "length": 70
+        },
+        "iso3": {
+          "type": "cds.String",
+          "length": 3
+        },
+        "iso3Number": {
+          "type": "cds.Integer"
+        },
+        "localized": {
+          "type": "cds.Association",
+          "cardinality": {
+            "max": "*"
+          },
+          "target": "CrosstenantService.CurrencyTexts",
+          "on": [
+            {
+              "ref": [
+                "localized",
+                "code"
+              ]
+            },
+            "=",
+            {
+              "ref": [
+                "code"
+              ]
+            }
+          ]
         }
       }
     },
@@ -71,7 +178,7 @@
           "scale": 3
         },
         "currency": {
-          "type": "mt.tacoshop.tCurrency",
+          "type": "mt.tacoshop.crosstenant.tCurrency",
           "length": 3
         },
         "type": {
@@ -527,15 +634,6 @@
       "type": "cds.String",
       "length": 255
     },
-    "extensible": {
-      "kind": "aspect",
-      "elements": {
-        "extensions__": {
-          "@cds.api.ignore": true,
-          "type": "cds.String"
-        }
-      }
-    },
     "sap.common.Languages.texts": {
       "kind": "entity",
       "@odata.draft.enabled": false,
@@ -632,6 +730,33 @@
           "key": true,
           "type": "cds.String",
           "length": 3
+        }
+      }
+    },
+    "CrosstenantService.CurrencyTexts": {
+      "kind": "entity",
+      "@cds.autoexposed": true,
+      "@cds.autoexpose": true,
+      "projection": {
+        "from": {
+          "ref": [
+            "mt.tacoshop.crosstenant.CurrencyTexts"
+          ]
+        }
+      },
+      "elements": {
+        "locale": {
+          "key": true,
+          "type": "cds.String",
+          "length": 5
+        },
+        "code": {
+          "key": true,
+          "type": "cds.String",
+          "length": 70
+        },
+        "title": {
+          "type": "cds.String"
         }
       }
     }
