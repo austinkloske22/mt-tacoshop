@@ -13,6 +13,12 @@
       "destination": "srv"
     },
     {
+      "source": "^/Crosstenant/(.*)$",
+      "authenticationType": "xsuaa",
+      "scope": "$XSAPPNAME.Admin",
+      "destination": "srv"
+    },
+    {
       "source": "^/Tenant/(.*)$",
       "authenticationType": "xsuaa",
       "scope": "$XSAPPNAME.User",
