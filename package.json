@@ -16,6 +16,7 @@
     "passport": "^0.5.2"
   },
   "devDependencies": {
+    "@sap/ux-specification": "^1.96.3",
     "cds-dbm": "github:austinkloske22/cds-dbm#9a7751fcdc213a32a6f3fc2239ccace1168942de",
     "sqlite3": "^5.0.2"
   },
@@ -26,7 +27,8 @@
     "deploy:pg": "node_modules/cds-dbm/dist/cli.js deploy --create-db",
     "deploy:pg:load": "node_modules/cds-dbm/dist/cli.js deploy --load-via delta",
     "build:dbm": "cd ./node_modules/cds-dbm && npm install && npm run build",
-    "permission:dbm": "sudo chmod 755 ./node_modules/cds-dbm/dist/cli.js "
+    "permission:dbm": "sudo chmod 755 ./node_modules/cds-dbm/dist/cli.js ",
+    "watch-tacos": "cds watch --open tacos/webapp/index.html?sap-ui-xx-viewCache=false#fe-lrop-v4"
   },
   "cds": {
     "requires": {
@@ -86,5 +88,8 @@
       "no-console": "off",
       "require-atomic-updates": "off"
     }
-  }
+  },
+  "sapux": [
+    "app/tacos"
+  ]
 }
