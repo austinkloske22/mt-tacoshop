@@ -13,6 +13,7 @@ modules:
       disk-quota: 512M
     provides:
       - name: srv_api
+        public: true
         properties:
           url: ${default-url}
     requires:
