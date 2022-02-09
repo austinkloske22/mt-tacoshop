@@ -7,6 +7,7 @@
   "private": true,
   "dependencies": {
     "@sap/cds": "5.8.0",
+    "@sap/cds-odata-v2-adapter-proxy": "^1.8.6",
     "@sap/xsenv": "^3.1.1",
     "@sap/xssec": "^3.2.12",
     "body-parser": "^1.19.1",
